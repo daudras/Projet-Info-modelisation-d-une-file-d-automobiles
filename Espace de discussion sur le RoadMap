@@ -13,19 +13,25 @@ Analyse descendante et répartition des taches :
 3. Transition. 20/12/18 à 20/01/19. Un membre.
 4. Interface graphique. 20/12/18 à 20/01/19. Deux membres.
 5. Relier les différentes parties et tests 21/01/19 à 20/02/19. Tous les membres.
-6. Ecriture des rapports des différentes parties et mise en commun 21/02/19 à 20/03/19. Tous les membres.
+6. Mise en commun des différentes partie de rapports. 21/02/19 à 20/03/19. Tous les membres.
 
 1.a Définir les codes couleurs RGB
 1.b Choisir une implémentation : listes d'objets, fichier json ou autre et programmer un exemple pour les tests.
+1.c Choix d'un thème LATEX pour le rapport et rédaction d'une partie du rapport.
 
-2.a Ecrire un algorithme qui prends en entrée une file de cellules et renvoie une file de cellules.
-2.b Le programmer en Python d'après le 1.b et tests.
+2.a Faire les choix des coefficients probabilistes en fonction de différents scénarios.
+2.b Rédiger une partie du rapport.
 
-3.a Design de la fenêtre en relation avec les coefficients modifiables et les possibilités de pause, zoom, scoll
-3.b Algorithme d'affichage cellule par cellule ou ligne par ligne
-3.c Algorithme de zoom
-3.d Algorithme de scroll
-3.e Programmation en Python des 3 algorithmes d'après le 1.b et tests.
+3.a Ecrire un algorithme qui prends en entrée une file de cellules et renvoie une file de cellules.
+3.b Le programmer en Python d'après le 1.b et tests.
+3.c Rédiger une partie du rapport.
+
+4.a Design de la fenêtre en relation avec les coefficients modifiables (scénarios) et les possibilités de pause, zoom, scoll
+4.b Algorithme d'affichage cellule par cellule ou ligne par ligne
+4.c Algorithme de zoom
+4.d Algorithme de scroll
+4.e Programmation en Python des 3 algorithmes d'après le 1.b et tests.
+4.f Rédiger les parties correspondantes du rapport.
 
 Remarques : 
 1. Chaque membre du projet doit écrire au moins un algorithme.
