@@ -1,26 +1,31 @@
 Membres du projet : Damien AUDRAS, Raphaêl SELLAM, Abigaël GHOMO TSETEGHO.
 
 Damien :
-I] RoadMap
-Analyse descendante et répartition des taches.
-1. Base de données des cellules
-2. Algorithme de transition
-3. Interface graphique
-4. Relier les différentes parties et tests
-5. Ecriture des rapports des différentes parties et mise en commun
+RoadMap
+1/12/18 :  Création des comptes GitHub.com et admissions des membres de l'équipe comme collaborateurs sur 
+"daudras/Projet-Info-modelisation-d-une-file-d-automobiles".
+
+Rédaction du diagramme de Gantt pour le 21/01/19. Un membre.
+
+Analyse descendante et répartition des taches :
+1. Base de données des cellules. 10/12/18 à 20/12/18. Tous les membres.
+2. Règles de transition en relation avec les coefficients probabilistes. 10/12/18 à 20/12/18. Tous les membres.
+3. Transition. 20/12/18 à 20/01/19. Un membre.
+4. Interface graphique. 20/12/18 à 20/01/19. Deux membres.
+5. Relier les différentes parties et tests 21/01/19 à 20/02/19. Tous les membres.
+6. Ecriture des rapports des différentes parties et mise en commun 21/02/19 à 20/03/19. Tous les membres.
 
 1.a Définir les codes couleurs RGB
-1.b Choisir une implémentation : listes d'objets, fichier json ou autre et programmer un exemple
+1.b Choisir une implémentation : listes d'objets, fichier json ou autre et programmer un exemple pour les tests.
 
-2.a Définir les règles de transition en relation avec les coefficients probabilistes
-2.b Ecrire un algorithme
-2.c Le programmer d'après le 1.b
+2.a Ecrire un algorithme qui prends en entrée une file de cellules et renvoie une file de cellules.
+2.b Le programmer en Python d'après le 1.b et tests.
 
 3.a Design de la fenêtre en relation avec les coefficients modifiables et les possibilités de pause, zoom, scoll
 3.b Algorithme d'affichage cellule par cellule ou ligne par ligne
 3.c Algorithme de zoom
 3.d Algorithme de scroll
-3.e Programmation des 3 algorithmes d'après le 1.b
+3.e Programmation en Python des 3 algorithmes d'après le 1.b et tests.
 
 Remarques : 
 1. Chaque membre du projet doit écrire au moins un algorithme.
