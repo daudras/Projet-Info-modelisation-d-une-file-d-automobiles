@@ -12,8 +12,9 @@ Analyse descendante et répartition des taches :
 2. Règles de transition en relation avec les coefficients probabilistes. 10/12/18 à 20/12/18. Tous les membres.
 3. Transition. 20/12/18 à 20/01/19. Un membre.
 4. Interface graphique. 20/12/18 à 20/01/19. Deux membres.
-5. Relier les différentes parties et tests 21/01/19 à 20/02/19. Tous les membres.
-6. Mise en commun des différentes partie de rapports. 21/02/19 à 20/03/19. Tous les membres.
+5. Statistiques sur la base de données. 20/12/18 à 20/01/19. Un membre.
+6. Relier les différentes parties et tests 21/01/19 à 20/02/19. Tous les membres.
+7. Mise en commun des différentes partie de rapports. 21/02/19 à 20/03/19. Tous les membres.
 
 1.a Définir les codes couleurs RGB
 1.b Choisir une implémentation : listes d'objets, fichier json ou autre et programmer un exemple pour les tests.
@@ -32,6 +33,9 @@ Analyse descendante et répartition des taches :
 4.d Algorithme de scroll
 4.e Programmation en Python des 3 algorithmes d'après le 1.b et tests.
 4.f Rédiger les parties correspondantes du rapport.
+
+5.a Rapport statistique : vitesse moyenne, écart type, nombres d'accélérations franches ...
+5.b Rédiger une partie du rapport.
 
 Remarques : 
 1. Chaque membre du projet doit écrire au moins un algorithme.
