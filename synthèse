@@ -1,10 +1,36 @@
-Algorithme de synthèse :
-Boucle tkinter:
-   initialisation : matrice et écran
-   fonction1= création d'une nouvelle ligne de cellule -> augmente la matrice des cellules d'une ligne
-   fonction2= affichage de la dernière ligne de la matrice
-   fonction3= scroll si nécessaire ou si appuie sur un bouton
-   fonction4= zoom si appuie sur un bouton
-   fonction5= calcul et affiche les stats de la matrice
-   fin si temps écoulé ou bouton fin ou accident sinon appelle de la fonction1
+Damien Audras
+Algorithme de synthèse.
+
+cellules=matrice de cellules 
+temps=nombre de lignes de la matrice cellules
+
+fonction init_matrice()
+fonction init_ecran()
+fonction1()= création d'une nouvelle ligne de cellules -> augmente la matrice cellules d'une ligne
+fonction2()= affichage de la dernière ligne de la matrice
+fonction3()= scroll
+fonction4()= zoom
+fonction5()= affichage des stats de la matrice cellules
+fonction ou drapeau accident()= bool
+fonction ou variable temps()= int
+
+fonction fin()
+   fonction5()
+   écran de fin
+
+fonction boucle:
+   fonction1()
+   fonction2()
+   si hauteur max dépassé : fonction3() 
+   si largeur max dépassé : fonction4()
+   si temps écoulé ou bouton fin ou accident() : return fin()
+   sinon : return boucle()
+   
+interface=Tk()
+init_matrice()
+init_ecran()
+si appuie sur un bouton zoom -> fonction4()
+si appuie sur un bouton scroll -> fonction3()
+boucle()
+interface.mainloop()
    
