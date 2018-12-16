@@ -1,0 +1,10 @@
+Algorithme de synthèse :
+Boucle tkinter:
+   initialisation : matrice et écran
+   fonction1= création d'une nouvelle ligne de cellule -> augmente la matrice des cellules d'une ligne
+   fonction2= affichage de la dernière ligne de la matrice
+   fonction3= scroll si nécessaire ou si appuie sur un bouton
+   fonction4= zoom si appuie sur un bouton
+   fonction5= calcul et affiche les stats de la matrice
+   fin si temps écoulé ou bouton fin ou accident sinon appelle de la fonction1
+   
