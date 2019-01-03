@@ -38,15 +38,17 @@
         <task id="5" name="version alpha" color="#8cb6ce" meeting="false" start="2018-12-18" duration="90" complete="0" thirdDate="2018-11-26" thirdDate-constraint="0" expand="true">
             <depend id="11" type="2" difference="0" hardness="Strong"/>
             <task id="20" name="générer un exemple" color="#8cb6ce" meeting="false" start="2018-12-18" duration="2" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
-                <depend id="29" type="2" difference="0" hardness="Strong"/>
+                <depend id="29" type="2" difference="0" hardness="Rubber"/>
                 <depend id="30" type="2" difference="0" hardness="Strong"/>
                 <depend id="82" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="82" name="établir les fonctions de transitions" color="#8cb6ce" meeting="false" start="2018-12-20" duration="6" complete="0" thirdDate="2018-12-22" thirdDate-constraint="0" expand="true">
-                <depend id="24" type="2" difference="0" hardness="Strong"/>
                 <depend id="97" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="97" name="transitions" color="#8cb6ce" meeting="false" start="2018-12-26" duration="27" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
+            <task id="97" name="transitions" color="#8cb6ce" meeting="false" start="2018-12-26" duration="21" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
+                <depend id="126" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="126" name="synthèse pour alpha" color="#8cb6ce" meeting="false" start="2019-01-16" duration="6" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
                 <depend id="24" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="24" name="statistique" color="#8cb6ce" meeting="false" start="2019-01-22" duration="25" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
@@ -60,6 +62,7 @@
             </task>
             <task id="30" name="affichage cellules" color="#8cb6ce" meeting="false" start="2018-12-20" duration="27" complete="0" thirdDate="2019-01-19" thirdDate-constraint="0" expand="true">
                 <depend id="32" type="2" difference="0" hardness="Strong"/>
+                <depend id="126" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="32" name="zoom" color="#8cb6ce" meeting="false" start="2019-01-16" duration="31" complete="0" thirdDate="2019-01-21" thirdDate-constraint="0" expand="true">
                 <depend id="111" type="2" difference="0" hardness="Strong"/>
@@ -80,13 +83,15 @@
         <allocation task-id="20" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="24" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="97" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="82" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="82" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="126" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="111" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="29" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
         <allocation task-id="31" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
-        <allocation task-id="82" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="111" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="30" resource-id="2" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
         <allocation task-id="32" resource-id="2" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
-        <allocation task-id="82" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="111" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>
