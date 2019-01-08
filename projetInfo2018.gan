@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Modelisation file automobile" company="DU CCIE" webLink="http://" view-date="2018-11-01" view-index="0" gantt-divider-location="493" resource-divider-location="300" version="2.8.9" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Modelisation file automobile" company="DU CCIE" webLink="http://" view-date="2019-03-01" view-index="0" gantt-divider-location="493" resource-divider-location="300" version="2.8.9" locale="fr">
     <description/>
     <view zooming-state="default:8" id="gantt-chart">
         <field id="tpd3" name="Nom" width="231" order="0"/>
@@ -35,7 +35,7 @@
         </taskproperties>
         <task id="0" name="roadmap" color="#8cb6ce" meeting="false" start="2018-11-28" duration="23" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
         <task id="2" name="diagramme des tâches" color="#8cb6ce" meeting="false" start="2018-11-28" duration="23" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
-        <task id="5" name="version alpha" color="#8cb6ce" meeting="false" start="2018-12-18" duration="90" complete="0" thirdDate="2018-11-26" thirdDate-constraint="0" expand="true">
+        <task id="5" name="version alpha" color="#8cb6ce" meeting="false" start="2018-12-18" duration="29" complete="0" thirdDate="2018-11-26" thirdDate-constraint="0" expand="true">
             <depend id="11" type="2" difference="0" hardness="Strong"/>
             <task id="20" name="générer un exemple" color="#8cb6ce" meeting="false" start="2018-12-18" duration="2" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
                 <depend id="29" type="2" difference="0" hardness="Rubber"/>
@@ -48,31 +48,40 @@
             <task id="97" name="transitions" color="#8cb6ce" meeting="false" start="2018-12-26" duration="21" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
                 <depend id="126" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="126" name="synthèse pour alpha" color="#8cb6ce" meeting="false" start="2019-01-16" duration="6" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
-                <depend id="24" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="24" name="statistique" color="#8cb6ce" meeting="false" start="2019-01-22" duration="25" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
-                <depend id="111" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="29" name="fenêtre" color="#8cb6ce" meeting="false" start="2018-12-20" duration="27" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
+            <task id="29" name="fenêtre IHM" color="#8cb6ce" meeting="false" start="2018-12-20" duration="27" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="31" name="scroll" color="#8cb6ce" meeting="false" start="2019-01-16" duration="31" complete="0" thirdDate="2019-01-20" thirdDate-constraint="0" expand="true">
-                <depend id="111" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="30" name="affichage cellules" color="#8cb6ce" meeting="false" start="2018-12-20" duration="27" complete="0" thirdDate="2019-01-19" thirdDate-constraint="0" expand="true">
                 <depend id="32" type="2" difference="0" hardness="Strong"/>
                 <depend id="126" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="32" name="zoom" color="#8cb6ce" meeting="false" start="2019-01-16" duration="31" complete="0" thirdDate="2019-01-21" thirdDate-constraint="0" expand="true">
+        </task>
+        <task id="126" name="synthèse pour rendu alpha" color="#8cb6ce" meeting="false" start="2019-01-16" duration="6" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
+            <depend id="24" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="11" name="version béta" color="#8cb6ce" meeting="false" start="2019-01-16" duration="58" complete="0" thirdDate="2018-11-26" thirdDate-constraint="0" expand="true">
+            <depend id="123" type="2" difference="0" hardness="Strong"/>
+            <task id="32" name="zoom" color="#8cb6ce" meeting="false" start="2019-01-16" duration="43" complete="0" thirdDate="2019-01-21" thirdDate-constraint="0" expand="true">
                 <depend id="111" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="111" name="synthèse et tests" color="#8cb6ce" meeting="false" start="2019-02-16" duration="30" complete="0" thirdDate="2019-01-23" thirdDate-constraint="0" expand="true"/>
+            <task id="31" name="scroll" color="#8cb6ce" meeting="false" start="2019-01-16" duration="43" complete="0" thirdDate="2019-01-20" thirdDate-constraint="0" expand="true">
+                <depend id="111" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="24" name="statistique" color="#8cb6ce" meeting="false" start="2019-01-22" duration="37" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
+                <depend id="111" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="111" name="synthèse et tests pour rendu" color="#8cb6ce" meeting="false" start="2019-02-28" duration="15" complete="0" thirdDate="2019-01-23" thirdDate-constraint="0" expand="true">
+                <depend id="145" type="2" difference="0" hardness="Strong"/>
+            </task>
         </task>
-        <task id="11" name="version béta" color="#8cb6ce" meeting="false" start="2019-03-18" duration="30" complete="0" thirdDate="2018-11-26" thirdDate-constraint="0" expand="true">
+        <task id="139" name="pré-prod" color="#8cb6ce" meeting="false" start="2019-03-15" duration="46" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
+            <task id="145" name="scénarios et ajouts" color="#8cb6ce" meeting="false" start="2019-03-15" duration="30" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
+                <depend id="155" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="155" name="synthèse pour rendu" color="#8cb6ce" meeting="false" start="2019-04-14" duration="16" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="123" name="version final" color="#8cb6ce" meeting="false" start="2019-04-17" duration="40" complete="0" thirdDate="2019-03-27" thirdDate-constraint="0" expand="true"/>
+        <task id="123" name="version final" color="#8cb6ce" meeting="false" start="2019-04-30" duration="31" complete="0" thirdDate="2019-03-27" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="damien Audras" function="Default:1" contacts="damien.audras@gmail.com" phone=""/>
