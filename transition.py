@@ -42,7 +42,7 @@ def initCellules(n,probas):
     nbCol=n
     for j in range(nbCol):
         ligne.append([choix(probas[0])+1,choix(probas[1]),choix(probas[2]),
-        randint(-1,1),randint(2,3),randint(1,4)])
+        randint(-1,1),randint(2,3),randint(2,4)])
     cellules.append(ligne)
     return cellules
 def testInitCellules(): print(initCellules(8,probas))
@@ -59,7 +59,8 @@ def reglesTrans(e,e1,e2):
     c,an,ds,a,v,d=tuple(e)
     a1,a2=e1[3],e2[3]
     if (d>2): return 1
-    if (d==2) & (a1>0) : return 1
+    if (d==2) & (a1>0) & ((not an) | (a2>=0)) : return 1
+    if (d==2) & (a1>0) & an & (a2<0) : return 0
     if (d==2) & (a1==0) & ((not an) | (a2>=0)) & ds : return 0
     if (d==2) & (a1==0) & ((not an) | (a2>=0)) & (not ds) : return 1
     if (d==2) & (a1==0) & an & (a2<0) & ds : return -1
@@ -82,7 +83,7 @@ def testReglesTrans():
                 for a2 in range (2):
                     for ds in range (2):
                         e=[0,[0,1][an],[0,1][ds],0,0,[3,2,1][d]]
-                        e1=[0,0,0,[-3,-1,0,1][a1],0,0]
+                        e1=[0,0,0,[1,0,-1,-3][a1],0,0]
                         e2=[0,0,0,[0,-1][a2],0,0]
                         print(reglesTrans(e,e1,e2)," avec d=",e[5]," a1=",e1[3]
                             ," an=",e[1]," a2=",e2[3]," ds=",e[2])
@@ -90,11 +91,10 @@ def testReglesTrans():
 def conditionAccident(e,e1):
     """prends en entrée les états de deux cellules consécutive e et e1 dans
     l'ordre de la file de cellules de gauche à droite.
-    Détermine si la situation entraine un accident et renvoie un booléen
-    En cours de test"""
+    Détermine si la situation entraine un accident et renvoie un booléen"""
     c,an,ds,a,v,d=tuple(e)
-    c1,a1,v1=e1[0],e1[3],e1[4]
-    if (d==1) & ((a1==-3) | ((c1==0) & (v1==-2))) & (v>=2) : return True
+    c1,a1,an1=e1[0],e1[3],e1[1]
+    if (d==1) & (a1==-3) & (v>=2) : return True
     return False
 def testConditionAccident():
     print("false ",conditionAccident([1,0,0,1,1,1],[1,0,0,1,1,1])," ; true :",
@@ -123,12 +123,13 @@ def transition1Cel(e,e1,e2):
     a=bridageAcVi(v,reglesTrans(e,e1,e2))*c
     if a<-3: a=-3
     if a>3: a=3
-    if c1!=0: v=v+a
-    else: v=v+a+v1
+    if (c1==0) & (v>1) & (d==1): a=-3
+    v=v+a
     if v<0: v=0
     if v>3: v=3
     d=d+v1-v
-    if d<1: d=1
+    if (d<1) & (ds==0): d=1
+    if (d<2) & (ds==1): d=2
     if d>7: d=7
     return [c,an,ds,a,v,d]
 def testTransition1Cel():
@@ -155,8 +156,8 @@ def testTransitionFile():
 def entree(ligne,num,cel):
     """prends en entrée la dernière ligne du tableau de cellules et le numéro num
     de la cellules après laquelle on place la nouvelle cellule cel, 0<=num<len(ligne).
-    La distance d de l'état de la cellule ligne[num] ne doit pas être égale à 1.
-    Renvoie une nouvelle ligne en ajoutant cel à l'indice num+1 et en diminuant la distance
+    La distance d de l'état de la cellule ligne[num] doit être supérieure ou égale à 2.
+    Renvoie une nouvelle ligne en insérant cel à l'indice num+1 et en diminuant la distance
     d de 1 si cel est normale.
     """
     nouvLigne=deepcopy(ligne)
@@ -232,8 +233,8 @@ def creationCelluleEntreeNormale(probas):
 def creationCelluleEntreeSpeciale():
     """Renvoie une cellule spéciale, feu ou rond point au hasard pour
     une entrée dans la file."""
-    if randint(0,1): return [0,0,0,0,-2,-1]
-    else: return [0,0,0,0,-1,-1]
+    if randint(0,1): return [0,0,0,-1,0,-1]
+    else: return [0,0,0,-1,1,-1]
 def testCreationCelluleEntreeNormaleSpeciale():
     for i in range(5):
         print(creationCelluleEntreeNormale(probas),end=";")
@@ -272,7 +273,7 @@ def testmouvementFile():
     print(cellules[0],len(cellules[0]))
 def accident(ligne):
     """ligne est la dernière ligne de cellule. Renvoie True pour un accident
-    et False sinon. Accident si d=0 et c!=0."""
+    et False sinon. Accident si d=0."""
     for i in range(len(ligne)):
         if (ligne[i][5]==0) : return True
     return False
