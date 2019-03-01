@@ -1,5 +1,8 @@
 ﻿from random import randint
 from tkinter import*
+from statistics import mean,pvariance
+from transition import initCellules,nouvLigne
+
 
 def menuIhm():
     # ** la fenêtre **
@@ -66,26 +69,38 @@ def menuIhm():
     choixEntreeSortie.set("normal")
     OptionMenu(menuC, choixEntreeSortie, *[nom for nom in entreeSortie.keys()],
         command=entreeSortieFct).grid(row=12,column=1,sticky=E)
+    def formatProbas():
+        """formate les données pour une utilisation par l'algorithme de transition"""
+        probas=[probaMenu[i].get()/100 for i in range(8)]
+        probas=[[probas[0],probas[1],round(1-probas[0]-probas[1],2)],
+        [probas[2],round(1-probas[2],2)],[probas[3],round(1-probas[3],2)],
+        [probas[i+4] for i in range(4)]]
+        return probas
     def lancer():
         boutonActiver.config(text='Pause',command=pause)
         finir.grid(row=13,column=0,sticky=W)
-        iterer([probaMenu[i].get() for i in range(8)],accident.get())
+        stat()
+        probas=formatProbas()
+        initTransition(8,probas)
+        iterer(probas,accident.get())
     boutonActiver=Button(menuC,command=lancer,text='lancer la simulation')
     boutonActiver.grid(row=13,column=0,columnspan=2)
-    def recommencer():
-        menu.destroy()
-        drawing.destroy()
-        menuIhm()
+    def pause():
+        ihm.after_cancel(tourne)
+        boutonActiver.config(text='poursuivre la simulation',command=poursuivre)
+    def poursuivre():
+        boutonActiver.config(text='Pause',command=pause)
+        iterer(formatProbas(),accident.get())
     def finir():
         print("stop")
         ihm.after_cancel(tourne)
         boutonActiver.destroy()
-        stat()
         finir.config(text='recommencer',command=recommencer)
     finir=Button(menuC,command=finir,text='Finir')
-    def pause():
-        ihm.after_cancel(tourne)
-        boutonActiver.config(text='poursuivre la simulation',command=lancer)
+    def recommencer():
+        menu.destroy()
+        drawing.destroy()
+        menuIhm()
     # ** le menu des commandes spéciales **
     menuSpe=Frame(menu)
     menuSpe.grid(row=3,column=1)
@@ -105,6 +120,8 @@ def menuIhm():
             ).grid(row=0,column=0,columnspan=2)
         vitMoy=StringVar(menuS)
         pollution=StringVar(menuS)
+        vitMoy=StringVar(menuS)
+        pollution=StringVar(menuS)
         varStat=statistique()
         vitMoy.set(varStat[0])
         pollution.set(varStat[1])
@@ -121,22 +138,53 @@ def zoomP():
     print("zoom plus")
 def zoomM():
     print("zoom moins")
+def initTransition(n,probas):
+    """crèe une première ligne de n cellules pour démarrer l'algorithme de transition """
+    cellules.append(initCellules(n,probas))
 def iterer(probas,accident):
-    global tourne
-    print(probas,accident)
+    global tourne,temps
+    print(cellules[temps],temps)
+    cellules.append(nouvLigne(cellules[temps],probas,accident))
+    temps+=1
     tourne=ihm.after(1000*2,iterer,probas,accident)
+
+
+def listVA(i):
+    """i est le numéro de ligne de la matrice cellules.
+    en sortie v est une liste des vitesses contenus dans cette ligne
+    et a une liste des carrés des accélérations. """
+    v,a=[],[]
+    for j in range(len(cellules[i])):
+        v.append(cellules[i][j][4])
+        a.append(cellules[i][j][3]**2)
+    return v,a
+
+def apListeVA(i):
+    """met à jour les listes des vitesses, variances et
+    carrée des accélérations, variances pour l'indice i de la matrice cellules."""
+    listesVA["v"].append(mean(listVA(i)[0]))
+    listesVA["varV"].append(pvariance(listVA(i)[0]))
+    listesVA["a"].append(mean(listVA(i)[1]))
+    listesVA["varA"].append(pvariance(listVA(i)[1]))
+
+def statVA(i):
+    """renvoie les données statistiques pour un affichage """
+    return (listesVA["v"][i],listesVA["varV"][i],
+        mean(listesVA["v"]),pvariance(listesVA["v"]),
+        listesVA["a"][i],listesVA["varA"][i],
+        mean(listesVA["a"]),pvariance(listesVA["a"]))
 def statistique():
     return [1,2]
 
 
+if __name__ == '__main__':
+    listesVA={"v":[],"varV":[],"a":[],"varA":[]}
+    temps=0
+    cellules=[]
+    init=True
+    ihm=Tk()
+    ihm.resizable(False,False)
+    ihm.title("Évolution d’une file de voiture en fonction du comportement des automobilistes")
+    menuIhm()
+    ihm.mainloop()
 
-
-
-
-
-
-ihm=Tk()
-ihm.resizable(False,False)
-ihm.title("Évolution d’une file de voiture en fonction du comportement des automobilistes")
-menuIhm()
-ihm.mainloop()

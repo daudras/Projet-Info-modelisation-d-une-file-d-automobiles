@@ -33,22 +33,21 @@ def testChoix():
     print("\n frequence 0 : ",sum0/n," ; frequence 1 : ",sum1/n," ; frequence 2 : ",(n-sum0-sum1)/n)
 
 def initCellules(n,probas):
-    """renvoie une matrices de listes à 6 éléments comportant 1 ligne de 10 colonnes,
+    """renvoie une matrices de listes à 6 éléments comportant 1 ligne de n colonnes,
     représentant une file de n cellules au temps t=0
     probas est la liste des probabilités pour définir le comportement :
     probas=[[ p_c1, p_c2,1-p_c1-p_c2],[p_an,1-p_an],[p_ds,1-p_ds],[p_e, p_eS,p_r,p_rS]]"""
-    cellules=[]
     ligne=[]
     nbCol=n
     for j in range(nbCol):
         ligne.append([choix(probas[0])+1,choix(probas[1]),choix(probas[2]),
         randint(-1,1),randint(2,3),randint(2,4)])
-    cellules.append(ligne)
-    return cellules
+    return ligne
 def testInitCellules(): print(initCellules(8,probas))
 
 #initialisation
-cellules=initCellules(8,probas)
+cellules=[]
+cellules.append(initCellules(8,probas))
 
 def reglesTrans(e,e1,e2):
     """prends en entrée les états de trois cellules consécutive e, e1 et e2 dans
@@ -110,16 +109,17 @@ def bridageAcVi(v,coef):
 def testBridageAcVi():
     print(bridageAcVi(3,1),bridageAcVi(0,-1),bridageAcVi(2,7))
 
-def transition1Cel(e,e1,e2):
+def transition1Cel(e,e1,e2,accident):
     """prends en entrée les états de trois cellules consécutive e, e1 et e2 dans
-    l'ordre de la file de cellules de gauche à droite.
+    l'ordre de la file de cellules de gauche à droite et un bouléen a qui autorise
+    ou non la prise en compte d'un accident.
     Renvoie l'état t(e) image de e par les règles de transitions pour une cellule
     normale ou e pour une cellule spéciale (c=0) ou e avec d=0 si les conditions
     d'un accident sont réunies. Si e1 est spéciale il faut réduire la vitesse."""
     c,an,ds,a,v,d=tuple(e)
     if c==0: return e
     c1,v1=e1[0],e1[4]
-    if conditionAccident(e,e1): return [c,an,ds,a,v,0]
+    if conditionAccident(e,e1) and accident : return [c,an,ds,a,v,0]
     a=bridageAcVi(v,reglesTrans(e,e1,e2))*c
     if a<-3: a=-3
     if a>3: a=3
@@ -134,12 +134,12 @@ def transition1Cel(e,e1,e2):
     return [c,an,ds,a,v,d]
 def testTransition1Cel():
     print(cellules[0][0],cellules[0][1],cellules[0][2])
-    print(transition1Cel(cellules[0][0],cellules[0][1],cellules[0][2]))
-    print(transition1Cel([0,0,0,-2,0,0],cellules[0][1],cellules[0][2]))
-    print(transition1Cel([3,0,0,3,3,1],[1,0,0,-3,0,0],cellules[0][2]))
+    print(transition1Cel(cellules[0][0],cellules[0][1],cellules[0][2]),True)
+    print(transition1Cel([0,0,0,-2,0,0],cellules[0][1],cellules[0][2]),True)
+    print(transition1Cel([3,0,0,3,3,1],[1,0,0,-3,0,0],cellules[0][2]),True)
 
 
-def transitionFile(ligne):
+def transitionFile(ligne,accident):
     """prends en argument la dernière ligne du tableau cellules
     Renvoie une nouvelle ligne issue de l'application des règles de transitions.
     La file est considérée comme circulaire, toute cellule a donc deux suivantes.
@@ -148,10 +148,10 @@ def transitionFile(ligne):
     long=len(ligne)
     for i in range(long):
         e,e1,e2=ligne[i],ligne[(i+1)%long],ligne[(i+2)%long]
-        nouvLigne.append(transition1Cel(e,e1,e2))
+        nouvLigne.append(transition1Cel(e,e1,e2,accident))
     return nouvLigne
 def testTransitionFile():
-    print(transitionFile(cellules[0]))
+    print(transitionFile(cellules[0]),True)
 
 def entree(ligne,num,cel):
     """prends en entrée la dernière ligne du tableau de cellules et le numéro num
@@ -277,18 +277,21 @@ def accident(ligne):
     for i in range(len(ligne)):
         if (ligne[i][5]==0) : return True
     return False
-def testSimulation(duree):
+def nouvLigne(ligne,probas,accident):
+    return transitionFile(mouvementFile(ligne,probas),accident)
+def testSimulation(duree,probas):
     """probas=[[ p_c1, p_c2,1-p_c1-p_c2],[p_an,1-p_an],[p_ds,1-p_ds]
     ,[p_e, p_eS,p_r,p_rS]].
     Duree est le nombre d'itération maximale de la simulation.
     Test la simulation avant de l'intégrer à une interface graphique."""
-    cellules=initCellules(8,probas)
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules)
     for i in range(duree):
-        nouvLigne=transitionFile(mouvementFile(cellules[i],probas))
-        print(nouvLigne,len(nouvLigne))
-        cellules.append(nouvLigne)
-        if accident(nouvLigne): return print("accident",i)
+        ligne=transitionFile(mouvementFile(cellules[i],probas),True)
+        print(ligne,len(ligne))
+        cellules.append(ligne)
+        if accident(ligne) : return print("accident",i)
 
 
 
