@@ -23,7 +23,7 @@ def choix(liste):
     for i in range(len(liste)):
         if (n<l[i]):break
     return i
-def testChoix():
+def testChoix1():
     sum0,sum1,n=0,0,50
     for i in range(n) :
         c=choix([0.3,0.5,0.2])
@@ -31,6 +31,13 @@ def testChoix():
         elif c==1: sum1+=1
         print(c,end= " ; ")
     print("\n frequence 0 : ",sum0/n," ; frequence 1 : ",sum1/n," ; frequence 2 : ",(n-sum0-sum1)/n)
+def testChoix2():
+    sum0,n=0,50
+    for i in range(n) :
+        c=choix([0.3,0.7])
+        if c==0:sum0+=1
+        print(c,end= " ; ")
+    print("\n frequence 0 : ",sum0/n," ; frequence 1 : ",(n-sum0)/n)
 
 def initCellules(n,probas):
     """renvoie une matrices de listes à 6 éléments comportant 1 ligne de n colonnes,
@@ -271,7 +278,7 @@ def testmouvementFile():
         ligne=mouvementFile(cellules[0],probas)
         print(ligne,len(ligne))
     print(cellules[0],len(cellules[0]))
-def accident(ligne):
+def accidentTest(ligne):
     """ligne est la dernière ligne de cellule. Renvoie True pour un accident
     et False sinon. Accident si d=0."""
     for i in range(len(ligne)):
@@ -291,8 +298,7 @@ def testSimulation(duree,probas):
         ligne=transitionFile(mouvementFile(cellules[i],probas),True)
         print(ligne,len(ligne))
         cellules.append(ligne)
-        if accident(ligne) : return print("accident",i)
-
+        if accidentTest(ligne) : return print("accident",i)
 
 
 
