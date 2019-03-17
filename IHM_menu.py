@@ -1,5 +1,6 @@
 ﻿from tkinter import*
 
+
 def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement,
         init,scrollH,scrollB,zoomP,zoomM):
     """tourne est un tableau d'une case contenant l'id créer par after pour relancer itere
@@ -39,7 +40,6 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
     L_nbCel.grid(row=4,column=2,sticky=W)
     L_nbCel.grid_remove()
     tMax=IntVar()
-    tMax.set(100)
     Label(menuV,text="temps max").grid(row=5,column=1,sticky=E)
     Entry(menuV,textvariable=tMax,width=3).grid(row=5,column=2,sticky=W)
     def aide():
@@ -87,7 +87,7 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
         command=entreeSortieFct).grid(row=12,column=1,sticky=E)
     def initVarMenu():
         affInt.set("")
-        tMax.set(100)
+        tMax.set(20)
         accident.set(0)
         choixScenario.set("normal")
         choixEntreeSortie.set("normal")
@@ -131,6 +131,7 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
         boutonFinir.config(command=finir,text='Finir')
         boutonFinir.grid_forget()
         init()
+
     # ** le menu des commandes spéciales **
     menuSpe=Frame(menu)
     menuSpe.grid(row=3,column=1)
