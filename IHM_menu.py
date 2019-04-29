@@ -1,9 +1,10 @@
 ﻿from tkinter import*
 
 
-def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement,
+def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,tempsHist,
         init,scrollH,scrollB,zoomP,zoomM):
-    """tourne est un tableau d'une case contenant l'id créer par after pour relancer itere
+    """tourne est une liste d'une case contenant l'id créer
+    par after pour relancer iterer
     itere : fonction qui crèe la boucle avec after
     ihm est une instance Tk de la fenêtre,
     menu est un frame de ihm pour y placer le menu
@@ -87,7 +88,7 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
         command=entreeSortieFct).grid(row=12,column=1,sticky=E)
     def initVarMenu():
         affInt.set("")
-        tMax.set(20)
+        tMax.set(100)
         accident.set(0)
         choixScenario.set("normal")
         choixEntreeSortie.set("normal")
@@ -107,19 +108,30 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
         E_nbCel.grid_remove()
         L_nbCel.config(text=nbCel.get())
         L_nbCel.grid()
-        probas=formatProbas()
-        lancement(nbCel.get(),probas,accident.get(),tMax.get())
+        iterer(formatProbas(),accident.get(),tMax.get())
     boutonActiver=Button(menuC,command=lancer,text='lancer la simulation')
     boutonActiver.grid(row=13,column=0,columnspan=2)
     def pause():
         ihm.after_cancel(tourne[0])
         boutonActiver.config(text='poursuivre la simulation',command=poursuivre)
+        bScrollH.grid()
+        bScrollB.grid()
+        bzoomP.grid()
+        bzoomM.grid()
     def poursuivre():
         boutonActiver.config(text='Pause',command=pause)
+        bScrollH.grid_remove()
+        bScrollB.grid_remove()
+        bzoomP.grid_remove()
+        bzoomM.grid_remove()
         if iterer(formatProbas(),accident.get(),tMax.get()): finir()
     def finir():
         ihm.after_cancel(tourne[0])
         boutonActiver.grid_remove()
+        bScrollH.grid()
+        bScrollB.grid()
+        bzoomP.grid()
+        bzoomM.grid()
         boutonFinir.config(text='recommencer',command=recommencer)
     boutonFinir=Button(menuC,command=finir,text='Finir')
     def recommencer():
@@ -130,18 +142,55 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
         boutonActiver.grid()
         boutonFinir.config(command=finir,text='Finir')
         boutonFinir.grid_forget()
+        bScrollH.grid_remove()
+        bScrollB.grid_remove()
+        bzoomP.grid_remove()
+        bzoomM.grid_remove()
         init()
+    def infoCouleurs():
+        texteInfoCouleurs="""
+        Fonctionnement d’une Cellule
+
+        Représentation graphique d’une Cellule : elle est constituée d’un rectangle principal a l’intérieur duquel on retrouve trois autres rectangles.
+         Les quatre rectangles ont un code couleur individual conforme aux spécifications
+         qui se trouvent dans le document Comportement.doc disponible sur la plateforme GitHub.
+
+        Une cellule comporte trois états liés au comportement du conducteur et trois états liés à la situation.
+         Etat_de_la_cellule = (c,an,ds,a,v,d)
+        Selon les valeurs de c, an et ds on aura une couleur particulière du grand rectangle,
+        selon la valeur de “a” on aura une couleur de la première fenêtre, selon la valeur de “v”
+        on aura une couleur de la deuxième fenêtre, et selon la valeur de “d” on aura une valeur de la troisième fenêtre.
+
+        La class Cellule fournit donc le code pour implémenter cela, elle prend en paramètres
+        les dimensions du rectangle principal et les valeurs de l’Etat de la cellule pour les couleurs.
+        Pour ainsi créer les quatre rectangles et en y associant une function “colorer”
+        qui fournira les couleurs aux rectangles selon les valeurs de “c, an, ds, a, v, d”
+        entrées en paramètres lors de l’instanciation de la Class Cellule.
+        """
+        try :
+            ihm.nametowidget('messageinfoCouleurs').destroy()
+        except KeyError:
+            Message(ihm,text=texteInfoCouleurs, width=600,bg='white',name='messageinfoCouleurs').grid(row=0,column=0)
+    Button(menuC,command=infoCouleurs,text='infoCouleurs').grid(row=14,column=0,columnspan=2,sticky=W)
 
     # ** le menu des commandes spéciales **
     menuSpe=Frame(menu)
     menuSpe.grid(row=3,column=1)
     Label(menuSpe,text="").grid(row=0,column=0)
     Label(menuSpe,text="scroll :").grid(row=1,column=0,sticky=W)
-    Button(menuSpe,command=scrollH,text='haut').grid(row=1,column=1)
-    Button(menuSpe,command=scrollB,text='bas').grid(row=1,column=2)
+    bScrollH=Button(menuSpe,command=scrollH,text='haut')
+    bScrollH.grid(row=1,column=1)
+    bScrollH.grid_remove()
+    bScrollB=Button(menuSpe,command=scrollB,text='bas')
+    bScrollB.grid(row=1,column=2)
+    bScrollB.grid_remove()
     Label(menuSpe,text="zoom :").grid(row=2,column=0,sticky=W)
-    Button(menuSpe,command=zoomP,text='+').grid(row=2,column=1)
-    Button(menuSpe,command=zoomM,text='-').grid(row=2,column=2)
+    bzoomP=Button(menuSpe,command=zoomP,text='+')
+    bzoomP.grid(row=2,column=1)
+    bzoomP.grid_remove()
+    bzoomM=Button(menuSpe,command=zoomM,text='-')
+    bzoomM.grid(row=2,column=2)
+    bzoomM.grid_remove()
     Label(menuSpe,text="").grid(row=3,column=0)
     # ** la fenêtre des statistiques **
     menuS=Frame(menu,bd=2)
@@ -179,4 +228,7 @@ def menuIhm(tourne,iterer,ihm,menu,drawing,affInt,statMenu,temps,nbCel,lancement
     Label(menuS,text="nombres de cellules : ").grid(row=4,column=0,sticky=E)
     Label(menuS,textvariable=nbCel,width=3).grid(row=4,column=1,sticky=W)
     Button(menuS,command=infoStat,text='Info').grid(row=4,column=1,sticky=E)
+    Label(menuS,text="temps historique :").grid(row=5,column=0,sticky=E)
+    Label(menuS,textvariable=tempsHist).grid(row=5,column=1,sticky=W)
     Label(menu,textvariable=affInt).grid(row=5,column=0,columnspan=3)
+

@@ -58,15 +58,15 @@
             <task id="29" name="fenêtre IHM" color="#8cb6ce" meeting="false" start="2019-02-11" duration="29" complete="0" thirdDate="2018-12-20" thirdDate-constraint="0" expand="true">
                 <depend id="111" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="30" name="affichage cellules" color="#8cb6ce" meeting="false" start="2019-01-22" duration="49" complete="0" thirdDate="2019-01-19" thirdDate-constraint="0" expand="true">
-                <depend id="111" type="2" difference="0" hardness="Strong"/>
-            </task>
             <task id="111" name="synthèse et tests pour rendu" color="#8cb6ce" meeting="false" start="2019-03-12" duration="6" complete="0" thirdDate="2019-01-23" thirdDate-constraint="0" expand="true">
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
                 <depend id="32" type="2" difference="0" hardness="Strong"/>
             </task>
+            <task id="30" name="affichage cellules" color="#8cb6ce" meeting="false" start="2019-01-22" duration="55" complete="0" thirdDate="2019-01-19" thirdDate-constraint="0" expand="true">
+                <depend id="221" type="2" difference="0" hardness="Strong"/>
+            </task>
         </task>
-        <task id="139" name="pré-prod" color="#8cb6ce" meeting="false" start="2019-03-18" duration="43" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
+        <task id="139" name="pré-prod" color="#8cb6ce" meeting="false" start="2019-03-18" duration="44" complete="0" thirdDate="2018-11-01" thirdDate-constraint="0" expand="true">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
             <task id="31" name="scroll" color="#8cb6ce" meeting="false" start="2019-03-18" duration="14" complete="0" thirdDate="2019-01-20" thirdDate-constraint="0" expand="true">
                 <depend id="145" type="2" difference="0" hardness="Strong"/>
@@ -77,9 +77,12 @@
             <task id="32" name="zoom" color="#8cb6ce" meeting="false" start="2019-03-18" duration="37" complete="0" thirdDate="2019-01-21" thirdDate-constraint="0" expand="true">
                 <depend id="203" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="203" name="synthèse et tests pour rendu" color="#8cb6ce" meeting="false" start="2019-04-24" duration="6" complete="0" thirdDate="2018-12-01" thirdDate-constraint="0" expand="true"/>
+            <task id="221" name="affichage cellules" color="#8cb6ce" meeting="false" start="2019-03-18" duration="43" complete="0" thirdDate="2018-12-01" thirdDate-constraint="0" expand="true">
+                <depend id="203" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="203" name="synthèse et tests pour rendu" color="#8cb6ce" meeting="false" start="2019-04-30" duration="1" complete="0" thirdDate="2018-12-01" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="123" name="version final" color="#8cb6ce" meeting="false" start="2019-04-30" duration="31" complete="0" thirdDate="2019-03-27" thirdDate-constraint="0" expand="true"/>
+        <task id="123" name="version final" color="#8cb6ce" meeting="false" start="2019-05-01" duration="31" complete="0" thirdDate="2019-03-27" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="damien Audras" function="Default:1" contacts="damien.audras@gmail.com" phone=""/>
@@ -97,10 +100,9 @@
         <allocation task-id="29" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="145" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="203" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="32" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="30" resource-id="2" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
-        <allocation task-id="32" resource-id="2" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
         <allocation task-id="111" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
-        <allocation task-id="203" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>

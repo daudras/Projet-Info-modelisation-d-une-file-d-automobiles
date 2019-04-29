@@ -3,7 +3,6 @@
 #liste des probabilités pour la génération de nouvelles cellules :
 #probas=[[ p_c1, p_c2,1-p_c1-p_c2],[p_an,1-p_an],[p_ds,1-p_ds],
 #[p_e, p_eS,p_r,p_rS]]
-probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
 
 from random import randint, random
 from copy import deepcopy
@@ -50,11 +49,9 @@ def initCellules(n,probas):
         ligne.append([choix(probas[0])+1,choix(probas[1]),choix(probas[2]),
         randint(-1,1),randint(2,3),randint(2,4)])
     return ligne
-def testInitCellules(): print(initCellules(8,probas))
+def testInitCellules():
+    print(initCellules(8,probas))
 
-#initialisation
-cellules=[]
-cellules.append(initCellules(8,probas))
 
 def reglesTrans(e,e1,e2):
     """prends en entrée les états de trois cellules consécutive e, e1 et e2 dans
@@ -140,10 +137,13 @@ def transition1Cel(e,e1,e2,accident):
     if d>7: d=7
     return [c,an,ds,a,v,d]
 def testTransition1Cel():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules[0][0],cellules[0][1],cellules[0][2])
-    print(transition1Cel(cellules[0][0],cellules[0][1],cellules[0][2]),True)
-    print(transition1Cel([0,0,0,-2,0,0],cellules[0][1],cellules[0][2]),True)
-    print(transition1Cel([3,0,0,3,3,1],[1,0,0,-3,0,0],cellules[0][2]),True)
+    print(transition1Cel(cellules[0][0],cellules[0][1],cellules[0][2],True))
+    print(transition1Cel([0,0,0,-2,0,0],cellules[0][1],cellules[0][2],True))
+    print(transition1Cel([3,0,0,3,3,1],[1,0,0,-3,0,0],cellules[0][2],True))
 
 
 def transitionFile(ligne,accident):
@@ -158,6 +158,9 @@ def transitionFile(ligne,accident):
         nouvLigne.append(transition1Cel(e,e1,e2,accident))
     return nouvLigne
 def testTransitionFile():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(transitionFile(cellules[0]),True)
 
 def entree(ligne,num,cel):
@@ -176,6 +179,9 @@ def entree(ligne,num,cel):
     nouvLigne[num+1]=cel
     return nouvLigne
 def testEntree():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules[0],len(cellules[0]))
     print(entree(cellules[0],len(cellules[0])-1,[0,0,0,0,0,0]))
     print(entree(cellules[0],2,[0,0,0,0,0,0]))
@@ -198,6 +204,9 @@ def sortie(ligne,num):
     nouvLigne.pop()
     return nouvLigne
 def testSortie():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules[0])
     print(sortie(cellules[0],len(cellules[0])-1))
     print(sortie(cellules[0],2))
@@ -218,6 +227,9 @@ def filtreDsup2(liste):
         if liste[i][5]>=2: l.append(i)
     return l
 def testFiltreDsup2():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules[0])
     print(filtreDsup2(cellules[0]))
 def filtreNormales(liste):
@@ -243,10 +255,14 @@ def creationCelluleEntreeSpeciale():
     if randint(0,1): return [0,0,0,-1,0,-1]
     else: return [0,0,0,-1,1,-1]
 def testCreationCelluleEntreeNormaleSpeciale():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
     for i in range(5):
         print(creationCelluleEntreeNormale(probas),end=";")
         print(creationCelluleEntreeSpeciale(),end=";")
 def testFiltreNormalesSpeciales():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     ligne=cellules[0]+[creationCelluleEntreeSpeciale()]
     print(ligne)
     print(filtreNormales(ligne))
@@ -273,6 +289,9 @@ def mouvementFile(ligne,probas):
         nouvLigne=entree(nouvLigne,choixHasardListe(dSup2),creationCelluleEntreeSpeciale())
     return nouvLigne
 def testmouvementFile():
+    probas=[[0.2,0.7,0.1],[0.3,0.7],[0.6,0.4],[0.5,0.2,0.5,0.5]]
+    cellules=[]
+    cellules.append(initCellules(8,probas))
     print(cellules[0],len(cellules[0]))
     for i in range(50):
         ligne=mouvementFile(cellules[0],probas)
